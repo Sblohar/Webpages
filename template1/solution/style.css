@@ -20,3 +20,6 @@
       display:grid;
        grid-template-columns: 500px 500px 600px;
   }
+.main1{
+    background-color: antiquewhite;
+  }
