@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+       <report>
+           id="report_student_details"
+         model="student.student"
+         report_type="qweb-pdf"
+         string="Print"
+         name="student_management.report_student_details"
+         file="student_management.report_student_details"
+     </report>
+</odoo>
