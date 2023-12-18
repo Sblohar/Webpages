@@ -19,15 +19,16 @@
   font-size: 50px;
   font-weight: 700;
 }
-.menu:hover{
+/* 
+
+.nav-link:active .menu{
+  color: red;
+} */
+
+.active, .menu:hover {
   color: red;
 }
-.menu.active:hover {
-  color: red !important;
-}
-.navbar-nav .nav-link.active, .navbar-nav .menu:hover, .section2 .navbar-nav .menu.active:hover {
-  color: red;
-}
+
 .about-image{
 
     border-radius: 20px;
@@ -111,6 +112,10 @@
   box-shadow: 10px 10px 5px gray;
   border-left: 7px solid red;
  
+
+}
+.box1.active .text{
+  color: #ffc107;
 }
 .box1:hover .text{
   color: #ffc107;
@@ -121,11 +126,6 @@
   border-left: 7px solid red;
 
 }
-.text:active{
-  color: #ffc107 !important;
-}
-
-
 .box1{
     border-radius: 0;
     border: 0;
