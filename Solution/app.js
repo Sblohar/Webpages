@@ -1,17 +1,4 @@
-var phone_input = document.getElementById("myform_phone");
 
-phone_input.addEventListener('input', () => {
-  phone_input.setCustomValidity('');
-  phone_input.checkValidity();
-});
-
-phone_input.addEventListener('invalid', () => {
-  if(phone_input.value === '') {
-    phone_input.setCustomValidity('Enter phone number!');
-  } else {
-    phone_input.setCustomValidity('Enter phone number in this format: 123-456-7890');
-  }
-});
 
 document.getElementById('button1').addEventListener('click', function() {
   document.getElementById('infoDisplay').innerHTML = `
@@ -25,6 +12,7 @@ document.getElementById('button1').addEventListener('click', function() {
   </ul>
   `;
 });
+
 
 document.getElementById('button2').addEventListener('click', function() {
   document.getElementById('infoDisplay').innerHTML = `
@@ -49,3 +37,52 @@ document.getElementById('button3').addEventListener('click', function() {
   `;
   
 });
+
+document.getElementById("button1").click();
+
+function get_navbar_offset_top(){
+  const navbar = document.getElementById("navbar");
+  return navbar.offsetTop;
+}
+
+
+window.onscroll = function() { 
+  const navbar = document.getElementById("navbar");
+
+  // makeNavbarSticky();
+  const sticky = get_navbar_offset_top();
+  console.log(sticky, window.pageYOffset)
+
+  if (window.pageYOffset >= 62) {
+    navbar.classList.add("sticky");
+  } else {
+    navbar.classList.remove("sticky");
+  }
+};
+
+function myFunction() {
+  let x = document.getElementById("numb").value;
+  let text;
+  if (isNaN(x) || x < 1 || x > 10) {
+    text = "Input not valid";
+  } else {
+    text = "Input OK";
+  }
+}
+
+// function makeNavbarSticky() {
+  
+// }
+
+
+//navbar
+//  document.addEventListener('scroll', ()=>{
+//      const navbar = document.querySelector('.navbar');
+
+//      if (window.scrollY > 0){
+//          navbar.classList.add('scrolled');
+//      }else{
+//          navbar.classList.remove('scrolled');
+//      }
+
+//  })
