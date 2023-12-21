@@ -11,10 +11,8 @@
     'version': "1.0",
     'depends': ['base', 'web', 'website'],
     'data': [
-           # 'security/ir.model.access.csv',
-           #  'views/custom_modul_template.xml',
-           #  'views/custom_page.xml',
-           #  'views/menus.xml',
+          # 'security/ir.model.access.csv',
+            'data/register_data.xml',
             'views/website_homepage.xml',
     ],
     'application': 'true',
