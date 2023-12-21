@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <template id="test_homepage">
+        <t t-call="website.layout">
+             <xpath expr="//link[last()]" position="after">
+                <link href="website_management/static/src/css/style.css" rel="stylesheet"/>
+            </xpath>
+            <section class="title_register">
+                <div class="container pb-3">
+                    <h2 style="color: #60B3E4;">My Account Registration</h2>
+                </div>
+            </section>
+            <section class="register_page p-5" style="background-color: #F2F2F2;">
+                <div class="container">
+                        <span class="mb-5" style="margin:14px; font-size:1rem !important;">Use the form below to create a My
+                            Account at Rapid Die Cut to access Quotes, place Orders, and view Order history.
+                        </span>
+
+                        <div class="row mt-4">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <h2 class="mb-3">Login Details</h2>
+                            </div>
+                            <div class="col-xl-1 col-lg-1 col-md-1">
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <h2 class="mb-3">Contact Details</h2>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <p class="mt-3">Email Address</p>
+                                <input class="input_box" id="email_d" required="required" type="text" name="email_d" pattern="[^ @]*@[^ @]*" t-att-value="email_d" placeholder="" style="width:90% !important" tabindex="1"/>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <p class="mt-3">First Name</p>
+                                <input class="input_box" id="first_name_d" required="required" type="text" name="first_name_d" t-att-value="first_name_d" placeholder="" style="width:90% !important" tabindex="4"/>
+                        </div>
+                        <div class="col-xl-4 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                <p class="mt-3">Address Line 1</p>
+                                <input class="input_box" id="street_d_1" required="required" type="text" name="street_d_1" placeholder="" style="width:90% !important" tabindex="9"/>
+                            </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <p class="mt-3">Password</p>
+                              <input class="input_box" id="password_d" required="required" type="password" name="password_d" t-att-value="password_d" placeholder="" style="width:90% !important" tabindex="2"/>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <p class="mt-3">Last Name</p>
+                                <input class="input_box" id="first_name_d" required="required" type="text" name="first_name_d" t-att-value="first_name_d" placeholder="" style="width:90% !important" tabindex="4"/>
+                        </div>
+                      <div class="col-xl-4 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                <p class="mt-3">Address Line 2</p>
+                                <input class="input_box" id="street_d_1" required="required" type="text" name="street_d_1" placeholder="" tabindex="9" style="width:90% !important"/>
+                            </div>
+
+                    </div>
+                    <div class="row">
+                            <div class="col-4">
+                                <p class="mt-3">Confirm Password</p>
+                                <input class="input_box" id="confirm_pwd_d" required="required" type="password" name="confirm_pwd_d" placeholder="" tabindex="3" style="width:90% !important"/>
+                                <p id="confirmPasswordMessage" class="validationMessage" style="color:red !important"></p>
+                            </div>
+                            <div class="col-3">
+                                <p class="mt-3">Company Name</p>
+                                <input class="input_box" id="company_name_d" required="required" type="text" name="company_name_d" placeholder="" tabindex="6"/>
+                            </div>
+
+                            <div class="col-3">
+                                <p class="mt-3">City</p>
+                                <input class="input_box" id="city_d" required="required" type="text" name="city_d" placeholder="" tabindex="11"/>
+                            </div>
+                        </div>
+                    <div class="row">
+                            <div class="col-3">
+                                <span class="p_popup validationMessage" id="passwd_min_requirement" style="color:grey">Password must
+                                    be at least 8 characters long and contain both
+                                    letters and numbers
+                                </span>
+                            </div>
+                            <div class="col-1">
+                            </div>
+
+                          <div class="col-3">
+                                <p class="">Phone Number</p>
+                                <input class="input_box" id="" required="required" type="text" name="Phone" pattern="[1-9]{1}[0-9]{9}"  placeholder="" tabindex="6"/>
+                            </div>
+                            <div class="col-3">
+                                <p class="p_popup">Country</p>
+                                <div id="country_d_id">
+                                    <span class="list_popup">
+                                        <select class="list_popup form-select" name="country" required="True" id="country_d" style="border: none!important; width: 85% ;" tabindex="12">
+                                            <option value="">Select Country...</option>
+                                                <option value="3" class="d-none">
+                                                    Afghanistan
+                                                </option>
+                                                <option value="6" class="d-none">
+                                                    Albania
+                                                </option>
+                                                <option value="62" class="d-none">
+                                                    Algeria
+                                                </option>
+                                                <option value="11" class="d-none">
+                                                    American Samoa
+                                                </option>
+                                                <option value="1" class="d-none">
+                                                    Andorra
+                                                </option>
+                                                <option value="8" class="d-none">
+                                                    Angola
+                                                </option>
+                                                <option value="5" class="d-none">
+                                                    Anguilla
+                                                </option>
+                                                <option value="9" class="d-none">
+                                                    Antarctica
+                                                </option>
+                                                <option value="4" class="d-none">
+                                                    Antigua and Barbuda
+                                                </option>
+                                                <option value="10" class="d-none">
+                                                    Argentina
+                                                </option>
+                                                <option value="7" class="d-none">
+                                                    Armenia
+                                                </option>
+                                                <option value="14" class="d-none">
+                                                    Aruba
+                                                </option>
+                                                <option value="13" class="d-none">
+                                                    Australia
+                                                </option>
+                                                <option value="12" class="d-none">
+                                                    Austria
+                                                </option>
+                                                <option value="16" class="d-none">
+                                                    Azerbaijan
+                                                </option>
+                                                <option value="32" class="d-none">
+                                                    Bahamas
+                                                </option>
+                                                <option value="23" class="d-none">
+                                                    Bahrain
+                                                </option>
+                                                <option value="19" class="d-none">
+                                                    Bangladesh
+                                                </option>
+                                                <option value="18" class="d-none">
+                                                    Barbados
+                                                </option>
+                                                <option value="36" class="d-none">
+                                                    Belarus
+                                                </option>
+                                                <option value="20" class="d-none">
+                                                    Belgium
+                                                </option>
+                                                <option value="37" class="d-none">
+                                                    Belize
+                                                </option>
+                                                <option value="25" class="d-none">
+                                                    Benin
+                                                </option>
+                                                <option value="27" class="d-none">
+                                                    Bermuda
+                                                </option>
+                                                <option value="33" class="d-none">
+                                                    Bhutan
+                                                </option>
+                                                <option value="29" class="d-none">
+                                                    Bolivia
+                                                </option>
+                                                <option value="30" class="d-none">
+                                                    Bonaire, Sint Eustatius and Saba
+                                                </option>
+                                                <option value="17" class="d-none">
+                                                    Bosnia and Herzegovina
+                                                </option>
+                                                <option value="35" class="d-none">
+                                                    Botswana
+                                                </option>
+                                                <option value="34" class="d-none">
+                                                    Bouvet Island
+                                                </option>
+                                                <option value="31" class="d-none">
+                                                    Brazil
+                                                </option>
+                                                <option value="105" class="d-none">
+                                                    British Indian Ocean Territory
+                                                </option>
+                                                <option value="28" class="d-none">
+                                                    Brunei Darussalam
+                                                </option>
+                                                <option value="22" class="d-none">
+                                                    Bulgaria
+                                                </option>
+                                                <option value="21" class="d-none">
+                                                    Burkina Faso
+                                                </option>
+                                                <option value="24" class="d-none">
+                                                    Burundi
+                                                </option>
+                                                <option value="116" class="d-none">
+                                                    Cambodia
+                                                </option>
+                                                <option value="47" class="d-none">
+                                                    Cameroon
+                                                </option>
+                                                <option value="38">
+                                                    Canada
+                                                </option>
+                                                <option value="52" class="d-none">
+                                                    Cape Verde
+                                                </option>
+                                                <option value="123" class="d-none">
+                                                    Cayman Islands
+                                                </option>
+                                                <option value="40" class="d-none">
+                                                    Central African Republic
+                                                </option>
+                                                <option value="214" class="d-none">
+                                                    Chad
+                                                </option>
+                                                <option value="46" class="d-none">
+                                                    Chile
+                                                </option>
+                                                <option value="48" class="d-none">
+                                                    China
+                                                </option>
+                                                <option value="54" class="d-none">
+                                                    Christmas Island
+                                                </option>
+                                                <option value="39" class="d-none">
+                                                    Cocos (Keeling) Islands
+                                                </option>
+                                                <option value="49" class="d-none">
+                                                    Colombia
+                                                </option>
+                                                <option value="118" class="d-none">
+                                                    Comoros
+                                                </option>
+                                                <option value="42" class="d-none">
+                                                    Congo
+                                                </option>
+                                                <option value="45" class="d-none">
+                                                    Cook Islands
+                                                </option>
+                                                <option value="50">
+                                                    Costa Rica
+                                                </option>
+                                                <option value="97" class="d-none">
+                                                    Croatia
+                                                </option>
+                                                <option value="51" class="d-none">
+                                                    Cuba
+                                                </option>
+                                                <option value="53" class="d-none">
+                                                    Curaçao
+                                                </option>
+                                                <option value="55" class="d-none">
+                                                    Cyprus
+                                                </option>
+                                                <option value="56" class="d-none">
+                                                    Czech Republic
+                                                </option>
+                                                <option value="44" class="d-none">
+                                                    Côte d'Ivoire
+                                                </option>
+                                                <option value="41" class="d-none">
+                                                    Democratic Republic of the Congo
+                                                </option>
+                                                <option value="59" class="d-none">
+                                                    Denmark
+                                                </option>
+                                                <option value="58" class="d-none">
+                                                    Djibouti
+                                                </option>
+                                                <option value="60" class="d-none">
+                                                    Dominica
+                                                </option>
+                                                <option value="61" class="d-none">
+                                                    Dominican Republic
+                                                </option>
+                                                <option value="63" class="d-none">
+                                                    Ecuador
+                                                </option>
+                                                <option value="65" class="d-none">
+                                                    Egypt
+                                                </option>
+                                                <option value="209" class="d-none">
+                                                    El Salvador
+                                                </option>
+                                                <option value="87" class="d-none">
+                                                    Equatorial Guinea
+                                                </option>
+                                                <option value="67" class="d-none">
+                                                    Eritrea
+                                                </option>
+                                                <option value="64" class="d-none">
+                                                    Estonia
+                                                </option>
+                                                <option value="212" class="d-none">
+                                                    Eswatini
+                                                </option>
+                                                <option value="69" class="d-none">
+                                                    Ethiopia
+                                                </option>
+                                                <option value="72" class="d-none">
+                                                    Falkland Islands
+                                                </option>
+                                                <option value="74" class="d-none">
+                                                    Faroe Islands
+                                                </option>
+                                                <option value="71" class="d-none">
+                                                    Fiji
+                                                </option>
+                                                <option value="70" class="d-none">
+                                                    Finland
+                                                </option>
+                                                <option value="75" class="d-none">
+                                                    France
+                                                </option>
+                                                <option value="79" class="d-none">
+                                                    French Guiana
+                                                </option>
+                                                <option value="174" class="d-none">
+                                                    French Polynesia
+                                                </option>
+                                                <option value="215" class="d-none">
+                                                    French Southern Territories
+                                                </option>
+                                                <option value="76" class="d-none">
+                                                    Gabon
+                                                </option>
+                                                <option value="84" class="d-none">
+                                                    Gambia
+                                                </option>
+                                                <option value="78" class="d-none">
+                                                    Georgia
+                                                </option>
+                                                <option value="57" class="d-none">
+                                                    Germany
+                                                </option>
+                                                <option value="80" class="d-none">
+                                                    Ghana
+                                                </option>
+                                                <option value="81" class="d-none">
+                                                    Gibraltar
+                                                </option>
+                                                <option value="88" class="d-none">
+                                                    Greece
+                                                </option>
+                                                <option value="83" class="d-none">
+                                                    Greenland
+                                                </option>
+                                                <option value="77" class="d-none">
+                                                    Grenada
+                                                </option>
+                                                <option value="86" class="d-none">
+                                                    Guadeloupe
+                                                </option>
+                                                <option value="91" class="d-none">
+                                                    Guam
+                                                </option>
+                                                <option value="90" class="d-none">
+                                                    Guatemala
+                                                </option>
+                                                <option value="82" class="d-none">
+                                                    Guernsey
+                                                </option>
+                                                <option value="85" class="d-none">
+                                                    Guinea
+                                                </option>
+                                                <option value="92" class="d-none">
+                                                    Guinea-Bissau
+                                                </option>
+                                                <option value="93" class="d-none">
+                                                    Guyana
+                                                </option>
+                                                <option value="98" class="d-none">
+                                                    Haiti
+                                                </option>
+                                                <option value="95" class="d-none">
+                                                    Heard Island and McDonald Islands
+                                                </option>
+                                                <option value="236" class="d-none">
+                                                    Holy See (Vatican City State)
+                                                </option>
+                                                <option value="96" class="d-none">
+                                                    Honduras
+                                                </option>
+                                                <option value="94" class="d-none">
+                                                    Hong Kong
+                                                </option>
+                                                <option value="99" class="d-none">
+                                                    Hungary
+                                                </option>
+                                                <option value="108" class="d-none">
+                                                    Iceland
+                                                </option>
+                                                <option value="104" class="d-none">
+                                                    India
+                                                </option>
+                                                <option value="100" class="d-none">
+                                                    Indonesia
+                                                </option>
+                                                <option value="107" class="d-none">
+                                                    Iran
+                                                </option>
+                                                <option value="106" class="d-none">
+                                                    Iraq
+                                                </option>
+                                                <option value="101" class="d-none">
+                                                    Ireland
+                                                </option>
+                                                <option value="103" class="d-none">
+                                                    Isle of Man
+                                                </option>
+                                                <option value="102">
+                                                    Israel
+                                                </option>
+                                                <option value="109" class="d-none">
+                                                    Italy
+                                                </option>
+                                                <option value="111" class="d-none">
+                                                    Jamaica
+                                                </option>
+                                                <option value="113" class="d-none">
+                                                    Japan
+                                                </option>
+                                                <option value="110" class="d-none">
+                                                    Jersey
+                                                </option>
+                                                <option value="112" class="d-none">
+                                                    Jordan
+                                                </option>
+                                                <option value="124" class="d-none">
+                                                    Kazakhstan
+                                                </option>
+                                                <option value="114" class="d-none">
+                                                    Kenya
+                                                </option>
+                                                <option value="117" class="d-none">
+                                                    Kiribati
+                                                </option>
+                                                <option value="250" class="d-none">
+                                                    Kosovo
+                                                </option>
+                                                <option value="122" class="d-none">
+                                                    Kuwait
+                                                </option>
+                                                <option value="115" class="d-none">
+                                                    Kyrgyzstan
+                                                </option>
+                                                <option value="125" class="d-none">
+                                                    Laos
+                                                </option>
+                                                <option value="134" class="d-none">
+                                                    Latvia
+                                                </option>
+                                                <option value="126" class="d-none">
+                                                    Lebanon
+                                                </option>
+                                                <option value="131" class="d-none">
+                                                    Lesotho
+                                                </option>
+                                                <option value="130" class="d-none">
+                                                    Liberia
+                                                </option>
+                                                <option value="135" class="d-none">
+                                                    Libya
+                                                </option>
+                                                <option value="128" class="d-none">
+                                                    Liechtenstein
+                                                </option>
+                                                <option value="132" class="d-none">
+                                                    Lithuania
+                                                </option>
+                                                <option value="133" class="d-none">
+                                                    Luxembourg
+                                                </option>
+                                                <option value="147" class="d-none">
+                                                    Macau
+                                                </option>
+                                                <option value="141" class="d-none">
+                                                    Madagascar
+                                                </option>
+                                                <option value="155" class="d-none">
+                                                    Malawi
+                                                </option>
+                                                <option value="157" class="d-none">
+                                                    Malaysia
+                                                </option>
+                                                <option value="154" class="d-none">
+                                                    Maldives
+                                                </option>
+                                                <option value="144" class="d-none">
+                                                    Mali
+                                                </option>
+                                                <option value="152" class="d-none">
+                                                    Malta
+                                                </option>
+                                                <option value="142" class="d-none">
+                                                    Marshall Islands
+                                                </option>
+                                                <option value="149" class="d-none">
+                                                    Martinique
+                                                </option>
+                                                <option value="150" class="d-none">
+                                                    Mauritania
+                                                </option>
+                                                <option value="153" class="d-none">
+                                                    Mauritius
+                                                </option>
+                                                <option value="246" class="d-none">
+                                                    Mayotte
+                                                </option>
+                                                <option value="156">
+                                                    Mexico
+                                                </option>
+                                                <option value="73" class="d-none">
+                                                    Micronesia
+                                                </option>
+                                                <option value="138" class="d-none">
+                                                    Moldova
+                                                </option>
+                                                <option value="137" class="d-none">
+                                                    Monaco
+                                                </option>
+                                                <option value="146" class="d-none">
+                                                    Mongolia
+                                                </option>
+                                                <option value="139" class="d-none">
+                                                    Montenegro
+                                                </option>
+                                                <option value="151" class="d-none">
+                                                    Montserrat
+                                                </option>
+                                                <option value="136" class="d-none">
+                                                    Morocco
+                                                </option>
+                                                <option value="158" class="d-none">
+                                                    Mozambique
+                                                </option>
+                                                <option value="145" class="d-none">
+                                                    Myanmar
+                                                </option>
+                                                <option value="159" class="d-none">
+                                                    Namibia
+                                                </option>
+                                                <option value="168" class="d-none">
+                                                    Nauru
+                                                </option>
+                                                <option value="167" class="d-none">
+                                                    Nepal
+                                                </option>
+                                                <option value="165" class="d-none">
+                                                    Netherlands
+                                                </option>
+                                                <option value="160" class="d-none">
+                                                    New Caledonia
+                                                </option>
+                                                <option value="170" class="d-none">
+                                                    New Zealand
+                                                </option>
+                                                <option value="164" class="d-none">
+                                                    Nicaragua
+                                                </option>
+                                                <option value="161" class="d-none">
+                                                    Niger
+                                                </option>
+                                                <option value="163" class="d-none">
+                                                    Nigeria
+                                                </option>
+                                                <option value="169" class="d-none">
+                                                    Niue
+                                                </option>
+                                                <option value="162" class="d-none">
+                                                    Norfolk Island
+                                                </option>
+                                                <option value="120" class="d-none">
+                                                    North Korea
+                                                </option>
+                                                <option value="143" class="d-none">
+                                                    North Macedonia
+                                                </option>
+                                                <option value="148" class="d-none">
+                                                    Northern Mariana Islands
+                                                </option>
+                                                <option value="166" class="d-none">
+                                                    Norway
+                                                </option>
+                                                <option value="171" class="d-none">
+                                                    Oman
+                                                </option>
+                                                <option value="177" class="d-none">
+                                                    Pakistan
+                                                </option>
+                                                <option value="184" class="d-none">
+                                                    Palau
+                                                </option>
+                                                <option value="172" class="d-none">
+                                                    Panama
+                                                </option>
+                                                <option value="175" class="d-none">
+                                                    Papua New Guinea
+                                                </option>
+                                                <option value="185" class="d-none">
+                                                    Paraguay
+                                                </option>
+                                                <option value="173" class="d-none">
+                                                    Peru
+                                                </option>
+                                                <option value="176" class="d-none">
+                                                    Philippines
+                                                </option>
+                                                <option value="180" class="d-none">
+                                                    Pitcairn Islands
+                                                </option>
+                                                <option value="178" class="d-none">
+                                                    Poland
+                                                </option>
+                                                <option value="183" class="d-none">
+                                                    Portugal
+                                                </option>
+                                                <option value="181" class="d-none">
+                                                    Puerto Rico
+                                                </option>
+                                                <option value="186" class="d-none">
+                                                    Qatar
+                                                </option>
+                                                <option value="188" class="d-none">
+                                                    Romania
+                                                </option>
+                                                <option value="190" class="d-none">
+                                                    Russian Federation
+                                                </option>
+                                                <option value="191" class="d-none">
+                                                    Rwanda
+                                                </option>
+                                                <option value="187" class="d-none">
+                                                    Réunion
+                                                </option>
+                                                <option value="26" class="d-none">
+                                                    Saint Barthélémy
+                                                </option>
+                                                <option value="198" class="d-none">
+                                                    Saint Helena, Ascension and Tristan da Cunha
+                                                </option>
+                                                <option value="119" class="d-none">
+                                                    Saint Kitts and Nevis
+                                                </option>
+                                                <option value="127" class="d-none">
+                                                    Saint Lucia
+                                                </option>
+                                                <option value="140" class="d-none">
+                                                    Saint Martin (French part)
+                                                </option>
+                                                <option value="179" class="d-none">
+                                                    Saint Pierre and Miquelon
+                                                </option>
+                                                <option value="237" class="d-none">
+                                                    Saint Vincent and the Grenadines
+                                                </option>
+                                                <option value="244" class="d-none">
+                                                    Samoa
+                                                </option>
+                                                <option value="203" class="d-none">
+                                                    San Marino
+                                                </option>
+                                                <option value="192" class="d-none">
+                                                    Saudi Arabia
+                                                </option>
+                                                <option value="204" class="d-none">
+                                                    Senegal
+                                                </option>
+                                                <option value="189" class="d-none">
+                                                    Serbia
+                                                </option>
+                                                <option value="194" class="d-none">
+                                                    Seychelles
+                                                </option>
+                                                <option value="202" class="d-none">
+                                                    Sierra Leone
+                                                </option>
+                                                <option value="197" class="d-none">
+                                                    Singapore
+                                                </option>
+                                                <option value="210" class="d-none">
+                                                    Sint Maarten (Dutch part)
+                                                </option>
+                                                <option value="201" class="d-none">
+                                                    Slovakia
+                                                </option>
+                                                <option value="199" class="d-none">
+                                                    Slovenia
+                                                </option>
+                                                <option value="193" class="d-none">
+                                                    Solomon Islands
+                                                </option>
+                                                <option value="205" class="d-none">
+                                                    Somalia
+                                                </option>
+                                                <option value="247" class="d-none">
+                                                    South Africa
+                                                </option>
+                                                <option value="89" class="d-none">
+                                                    South Georgia and the South Sandwich Islands
+                                                </option>
+                                                <option value="121" class="d-none">
+                                                    South Korea
+                                                </option>
+                                                <option value="207" class="d-none">
+                                                    South Sudan
+                                                </option>
+                                                <option value="68" class="d-none">
+                                                    Spain
+                                                </option>
+                                                <option value="129" class="d-none">
+                                                    Sri Lanka
+                                                </option>
+                                                <option value="182" class="d-none">
+                                                    State of Palestine
+                                                </option>
+                                                <option value="195" class="d-none">
+                                                    Sudan
+                                                </option>
+                                                <option value="206" class="d-none">
+                                                    Suriname
+                                                </option>
+                                                <option value="200" class="d-none">
+                                                    Svalbard and Jan Mayen
+                                                </option>
+                                                <option value="196" class="d-none">
+                                                    Sweden
+                                                </option>
+                                                <option value="43" class="d-none">
+                                                    Switzerland
+                                                </option>
+                                                <option value="211" class="d-none">
+                                                    Syria
+                                                </option>
+                                                <option value="208" class="d-none">
+                                                    São Tomé and Príncipe
+                                                </option>
+                                                <option value="227" class="d-none">
+                                                    Taiwan
+                                                </option>
+                                                <option value="218" class="d-none">
+                                                    Tajikistan
+                                                </option>
+                                                <option value="228" class="d-none">
+                                                    Tanzania
+                                                </option>
+                                                <option value="217" class="d-none">
+                                                    Thailand
+                                                </option>
+                                                <option value="223" class="d-none">
+                                                    Timor-Leste
+                                                </option>
+                                                <option value="216" class="d-none">
+                                                    Togo
+                                                </option>
+                                                <option value="219" class="d-none">
+                                                    Tokelau
+                                                </option>
+                                                <option value="222" class="d-none">
+                                                    Tonga
+                                                </option>
+                                                <option value="225" class="d-none">
+                                                    Trinidad and Tobago
+                                                </option>
+                                                <option value="221" class="d-none">
+                                                    Tunisia
+                                                </option>
+                                                <option value="224" class="d-none">
+                                                    Turkey
+                                                </option>
+                                                <option value="220" class="d-none">
+                                                    Turkmenistan
+                                                </option>
+                                                <option value="213" class="d-none">
+                                                    Turks and Caicos Islands
+                                                </option>
+                                                <option value="226" class="d-none">
+                                                    Tuvalu
+                                                </option>
+                                                <option value="232" class="d-none">
+                                                    USA Minor Outlying Islands
+                                                </option>
+                                                <option value="230" class="d-none">
+                                                    Uganda
+                                                </option>
+                                                <option value="229" class="d-none">
+                                                    Ukraine
+                                                </option>
+                                                <option value="2" class="d-none">
+                                                    United Arab Emirates
+                                                </option>
+                                                <option value="231">
+                                                    United Kingdom
+                                                </option>
+                                                <option value="233">
+                                                    United States
+                                                </option>
+                                                <option value="234" class="d-none">
+                                                    Uruguay
+                                                </option>
+                                                <option value="235" class="d-none">
+                                                    Uzbekistan
+                                                </option>
+                                                <option value="242" class="d-none">
+                                                    Vanuatu
+                                                </option>
+                                                <option value="238" class="d-none">
+                                                    Venezuela
+                                                </option>
+                                                <option value="241" class="d-none">
+                                                    Vietnam
+                                                </option>
+                                                <option value="239" class="d-none">
+                                                    Virgin Islands (British)
+                                                </option>
+                                                <option value="240" class="d-none">
+                                                    Virgin Islands (USA)
+                                                </option>
+                                                <option value="243" class="d-none">
+                                                    Wallis and Futuna
+                                                </option>
+                                                <option value="66" class="d-none">
+                                                    Western Sahara
+                                                </option>
+                                                <option value="245" class="d-none">
+                                                    Yemen
+                                                </option>
+                                                <option value="248" class="d-none">
+                                                    Zambia
+                                                </option>
+                                                <option value="249" class="d-none">
+                                                    Zimbabwe
+                                                </option>
+                                                <option value="15" class="d-none">
+                                                    Åland Islands
+                                                </option>
+                                        </select>
+                                    </span>
+                                </div>
+
+                                <div id="main-category-warning-country" class="row text-danger d-none rdc-warning custom-margin-left-10 cls-font">
+                                    Please Select the Country!
+                                </div>
+                            </div>
+                        </div>
+                    <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-1"></div>
+                        <div class="col-3">
+                                <p class="mt-3">State/Province</p>
+                                <div id="state_d_id">
+                                   <option value="">Select State...</option>
+
+                                </div>
+                                <div id="main-category-warning-state" class="row text-danger d-none rdc-warning custom-margin-left-10 cls-font">
+                                    Please Select the State!
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <p class="mt-3">ZIP/Postal Code</p>
+                                <input class="input_box" id="zip_d" type="text" name="zip_d" placeholder="" tabindex="14"/>
+                            </div>
+                        </div>
+                     <div class="row">
+                            <div class="col mt-5" style="margin-left :60rem;">
+                                <button id="create_user_direct_btn" class="btn text-white p-2" tabindex="15" style="background-color: #b6c936; width: 70%;">
+                                    Register
+                                </button>
+                            </div>
+                        </div>
+
+                </div>
+            </section>
+        </t>
+    </template>
+
+</odoo>
