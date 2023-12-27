@@ -12,7 +12,7 @@ odoo.define("website_management.register", function (require) {
             this.updateSelection();
         },
 
-        function onCountryChange(countryID) {
+         onCountryChange(countryid) {
       
 }
 });
