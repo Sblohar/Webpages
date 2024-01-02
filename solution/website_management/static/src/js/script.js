@@ -9,12 +9,12 @@ odoo.define('website_rdc.Register_form', function (require) {
         selector: '.register_form1',
         events: {
             'change #country_id': '_onchangeCountry',
-            'change #state_id': '_onchangeState'
+            'change #state_id': '_onchangeState',
+            'focusout #email_id': '_validemail',
+
         },
-
-
         start: function () {
-            debugger
+
         },
 
           _onchangeCountry: function(ev) {
@@ -41,7 +41,31 @@ odoo.define('website_rdc.Register_form', function (require) {
         },
 
 
+        _validemail: function (ev) {
+            debugger
+           const enteredEmail = $('.email_list').val();
+           const emailList = $('.email_list');
+
+//           let emailExists = $('.email_list').val();
+           let emailExists = false;
+
+            emailList.each(function () {
+            if ($(this).text() === enteredEmail) {
+            emailExists = true;
+            return false;
+            }
+        });
+
+            if (emailExists) {
+                alert('Email already exists!');
+            } else  {
+                alert('Email does not exist!');
+            }
+        },
+
+
     });
 
 
 });
+
