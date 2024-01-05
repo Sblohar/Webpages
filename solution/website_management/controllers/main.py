@@ -1,5 +1,5 @@
 from odoo import http
-from odoo.http import request
+from odoo.http import request, route
 
 
 class CustomController(http.Controller):
@@ -11,6 +11,7 @@ class CustomController(http.Controller):
         state = request.env['res.country.state'].sudo().search(domain)
         countries = request.env['res.country'].sudo().search(domain)
         partners = request.env['res.partner'].sudo().search(domain)
+
         email_list = []
         for partner in partners:
             email_list.append(partner.email)
@@ -19,6 +20,20 @@ class CustomController(http.Controller):
             'states': state,
             'country': countries,
             'email': email_list,
+
         }
 
         return http.request.render('website_management.test_homepage', vals)
+
+    @http.route(['/create_record'], type='http', auth='public', website=True)
+    def create_record(self, **kw):
+        print("TEST=============================================================")
+        request.env['res.partner'].sudo().create(kw)
+        response = {
+            'name': kw.get('first_name')
+        }
+        return response
+
+
+
+
