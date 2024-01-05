@@ -19,6 +19,8 @@
     'assets': {
         'web.assets_frontend': [
             'website_management/static/src/**/**/*',
+            'website_management/static/src/css/style.css',
+            'website_management/static/src/js/script.js',
 
         ],
     },
