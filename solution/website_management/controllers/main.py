@@ -26,16 +26,6 @@ class CustomController(http.Controller):
 
         return http.request.render('website_management.test_homepage', vals)
 
-    @http.route(['/new_orders'], type='http', auth='public', website=True)
-    def render_order_sale_(self, **kw):
-        domain = []
-        customer = request.env['res.partner'].sudo().search(domain)
-
-        vals = {
-            'customer': customer,
-        }
-
-        return http.request.render('website_management.order_new_sales', vals)
 
     @http.route(['/create_record'], type='http', auth='public', website=True, csrf=False)
     def create_record(self, **post):
