@@ -13,7 +13,6 @@
     'data': [
            # 'security/ir.model.access.csv',
             'data/register_data.xml',
-            'data/create_ordesr.xml',
             'views/website_homepage.xml',
     ],
     'application': 'true',
@@ -22,7 +21,7 @@
             # 'website_management/static/src/**/**/*',
             'website_management/static/src/css/style.css',
             'website_management/static/src/js/script.js',
-            'website_management/static/src/js/sales_order.js',
+        
 
         ],
     },
