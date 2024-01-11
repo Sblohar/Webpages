@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="order_new_sales">
+        <t t-call="website.layout">
+             <div class="sale_order1">
+                 <section class="title_register">
+                        <div class="container mt-5">
+                                <p class="">Customer</p>
+                                <div id="customer">
+                                    <select class="input_box" name="customer" id="customer_id"
+                                            tabindex="13" style="width: 90% ; background-color:white;">
+                                        <option value="">Select customer name...</option>
+                                        <t t-foreach="customer" t-as="i">
+                                            <option t-att-value="i.id">
+                                                <t t-esc="i.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                        </div>
+                 </section>
+                 <section class="m-4 p-4 shadow-lg p-3 mb-5 bg-white rounded">
+                     <table class="table caption-top">
+                     <h3 class="text-primary">Search Result</h3>
+                      <thead>
+                        <tr>
+                              <th scope="col">Sr</th>
+                              <th scope="col">Image</th>
+                              <th scope="col">Items</th>
+                              <th scope="col">Brand</th>
+                              <th scope="col">Description</th>
+                              <th scope="col">Price</th>
+                              <th scope="col">Quantity</th>
+                              <th scope="col">Action</th>
+                           </tr>
+                         </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>Mark</td>
+                          <td>table</td>
+                          <td>MAC</td>
+                          <td>Nice</td>
+                          <td>200</td>
+                          <td>High</td>
+                          <td><button type="button" class="btn btn-danger">Add To Cart</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                 </section>
+             </div>
+        </t>
+    </template>
+</odoo>
