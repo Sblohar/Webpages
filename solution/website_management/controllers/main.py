@@ -26,13 +26,15 @@ class CustomController(http.Controller):
 
         return http.request.render('website_management.test_homepage', vals)
 
-    @http.route(['/new_orders'], type='http', auth='public', website=True)
+     @http.route(['/new_orders'], type='http', auth='public', website=True)
     def render_order_sale_(self, **kw):
         domain = []
         customer = request.env['res.partner'].sudo().search(domain)
+        product = request.env['product.product'].sudo().search(domain)
 
         vals = {
             'customer': customer,
+            'product': product,
         }
 
         return http.request.render('website_management.order_new_sales', vals)
