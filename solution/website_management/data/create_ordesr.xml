@@ -19,6 +19,27 @@
                         </div>
                     </div>
                 </section>
+                <section class="orders m-4 p-4 shadow-lg p-3 mb-5 bg-white rounded">
+                    <table class="table table-sm o_main_table table-borderless mt-4 ">
+                        <div class="search-bar mb-4 row">
+                          <h3 class="text-primary col-lg-6">Orders</h3>
+                            <button type="button" id="confirm-btn" class="btn btn-success col-lg-6" style="width:200px; margin-left:600px;">Confirm Order</button>
+                        </div>
+                        <thead>
+                            <tr>
+                                <th scope="col">Sr</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Internal Reference</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+
+                    </table>
+
+                </section>
                 <section class="m-4 p-4 shadow-lg p-3 mb-5 bg-white rounded">
                     <table class="table table-sm o_main_table table-borderless mt-4">
                         <div class="search-bar mb-4">
@@ -54,7 +75,7 @@
                                     <td class="name pt-4">
                                         <t t-esc="p.default_code"/>
                                     </td>
-                                    <td class="Description pt-4">
+                                    <td class="description pt-4">
                                         <t t-esc="p.name"/>
                                     </td>
                                     <td class="price pt-4">
@@ -65,6 +86,7 @@
                                     </td>
                                     <td class="pt-4">
                                         <button type="button" class="btn btn-danger">Add To Cart</button>
+
                                     </td>
                                 </tr>
                             </t>
