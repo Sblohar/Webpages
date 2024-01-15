@@ -1,30 +1,26 @@
 odoo.define('website_rdc.Sales_order', function (require) {
     'use strict';
 
-    const dom = require('web.dom');
     const publicWidget = require('web.public.widget');
-
 
     publicWidget.registry.sale_order1 = publicWidget.Widget.extend({
         selector: '.sale_order1',
         events: {
-            'change #customer_id': '_onchangeCustomer'
-
+            'input #internalReferenceSearch': '_searchReference',
         },
 
         start: function () {
-            debugger
+           debugger
         },
 
-         _onchangeCustomer: function(ev) {
+        _searchReference: function (ev) {
+            const searchValue = ev.target.value.toLowerCase();
 
-
-          },
-
-    })
-
-
+            this.$('.main1').each(function () {
+                const internalReference = $(this).find('.name').text().toLowerCase();
+                const internal = internalReference.includes(searchValue);
+                $(this).toggle(internal);
+            });
+        },
+    });
 });
-
-
-
