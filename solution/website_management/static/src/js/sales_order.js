@@ -59,13 +59,40 @@ odoo.define('website_rdc.Sales_order', function (require) {
             });
         },
 
-        _confirmOrder: function (ev){
-            alert("Order Confirmed !")
-
-        },
-        _removeCart: function (ev){
+         _removeCart: function (ev){
             const $row = $(ev.currentTarget).closest('tr');
             $row.remove();
         },
-    });
+
+
+        _confirmOrder: function (){
+
+                     let orders = this._confirm_order_data();
+                        $.ajax("/confirm_order", {
+                                data: orders,
+                                type: 'POST',
+                                dataType: 'json',
+                                success: function (data) {
+                                         debugger
+                                },
+                                error: function (error) {
+                                debugger
+                                }
+                        })
+                  },
+
+               _confirm_order_data: function () {
+
+
+                   let order_data = {};
+
+                    order_data['customer_id'] = $('#customer_id').val();
+                    order_data['product_id'] = $('#product_id').val();
+                    order_data['quantity'] = $('#quantity').val();
+//                    order_data['price'] = $('#price').val();
+
+                    return order_data;
+                },
+
+            });
 });
