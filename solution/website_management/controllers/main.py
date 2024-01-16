@@ -1,4 +1,6 @@
+
 from odoo import http
+from odoo import Command
 from odoo.http import request, route
 import json
 
@@ -26,7 +28,7 @@ class CustomController(http.Controller):
 
         return http.request.render('website_management.test_homepage', vals)
 
-     @http.route(['/new_orders'], type='http', auth='public', website=True)
+    @http.route(['/new_orders'], type='http', auth='public', website=True)
     def render_order_sale_(self, **kw):
         domain = []
         customer = request.env['res.partner'].sudo().search(domain)
@@ -49,6 +51,47 @@ class CustomController(http.Controller):
         })
 
         return request.redirect('/website_management/contact_info/%s' % partner_id.id)
+
+    @http.route(['/confirm_order'], type='http', auth='public', website=True, csrf=False)
+    def create_order(self, **post):
+        print("tttttttttttttttttttttttttt")
+        customer_id = post.get('customer_id')
+        quantity = post.get('quantity')
+        product_id = post.get('product_id')
+        print(post)
+
+        sale_order = request.env['sale.order'].sudo().create({
+            'partner_id': int(customer_id),
+            'order_line': [
+                Command.create({
+                    'product_id': int(product_id),
+                    'product_uom_qty': int(quantity),
+                }),
+
+            ]
+
+        })
+
+        # request.env['sale.order.line'].sudo().create({
+        #     'product_uom_qty': int(quantity),
+        #     'price_unit': int(price)
+        # })
+
+
+        return request.redirect('/website_management/order_new_sales/%s' % sale_order.id)
+
+
+
+        # return json.dumps({
+        #     'status': 200
+        # })
+
+
+
+
+
+
+
 
 
 
