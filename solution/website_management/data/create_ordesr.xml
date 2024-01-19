@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="order_new_sales">
+        <t t-call="website.layout">
+            <div class="sale_order1">
+                <section class="title_register">
+                    <div class="container mt-5">
+                        <p class="">Customer</p>
+                        <div id="customer">
+                            <select class="input_box" name="customer" id="customer_id"
+                                    tabindex="13" style="width: 90% ; background-color:white;">
+                                <option value="">Select customer name...</option>
+                                <t t-foreach="customer" t-as="i">
+                                    <option t-att-value="i.id">
+                                        <t t-esc="i.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+                <section class="orders m-4 p-4 shadow-lg p-3 mb-5 bg-white rounded">
+                        <table class="table table-sm o_main_table table-borderless mt-4 ">
+                            <div class="search-bar mb-4 row">
+                              <h3 class="text-primary col-lg-6">Orders</h3>
+                                <button type="object" id="confirm-btn" class="btn btn-success col-lg-6" style="width:200px; margin-left:600px;">Confirm Order</button>
+                            </div>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sr</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Internal Reference</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="orders_col">
+
+                            </tbody>
+
+                        </table>
+
+                </section>
+                <section class="m-4 p-4 shadow-lg p-3 mb-5 bg-white rounded">
+                    <table class="table table-sm o_main_table table-borderless mt-4">
+                        <div class="search-bar mb-4">
+                            <label for="internalReferenceSearch" class="form-label text-primary">Search by Internal
+                                Reference:
+                            </label>
+                            <input type="text" class="form-control" id="internalReferenceSearch"
+                                   placeholder="Enter Internal Reference"/>
+                        </div>
+                        <thead>
+                            <tr>
+                                <th scope="col">Sr</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Internal Reference</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="sequence" t-value="0"/>
+                            <t t-foreach="product" t-as="p">
+                                <t t-set="sequence" t-value="sequence + 1"/>
+                                <tr class="main1 bottom-border-row">
+                                    <th scope="row" class="pt-4">
+                                        <t t-esc="sequence"/>
+                                    </th>
+                                    <td class="image">
+                                        <img t-attf-src="/web/image/product.product/#{p.id}/image_1920"
+                                             class="img1 img-fluid"/>
+                                    </td>
+                                    <td class="name pt-4" id="product_id">
+                                        <t t-esc="p.default_code"/>
+                                    </td>
+                                    <td class="description pt-4">
+                                        <t t-esc="p.name"/>
+                                    </td>
+                                    <td class="price pt-4" id="price">
+                                        <t t-esc="p.lst_price"/>
+                                    </td>
+                                    <td class="quantity pt-4" id="quantity">
+                                        <input id="quantity" type="number" style="width:100px;"/>
+                                    </td>
+                                    <td class="pt-4">
+                                        <button type="button" class="btn btn-danger">Add To Cart</button>
+
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

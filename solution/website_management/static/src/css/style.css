@@ -1,0 +1,19 @@
+
+.title_register{
+  margin-top: 80px;
+
+}
+.input_box{
+   border:1px solid #c8c8c8 !important;
+   padding:5px;
+}
+
+.valid {
+  color: green;
+}
+.bottom-border-row td {
+        border-bottom: 1px solid #ddd;
+   }
+.img1{
+   height:80px;
+}
