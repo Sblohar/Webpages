@@ -39,7 +39,8 @@ odoo.define('website_rdc.Sales_order', function (require) {
             const quantity = $row.find('.quantity input').val();
             const imagebox = $row.find('.image img').attr('src');
 
-            const newRow = `<tr>
+           debugger
+            const newRow = `<tr prod_id=${$row.attr('prod_id')}>
                                 <td></td>
                                  <td><img src="${imagebox}" alt="Image" style="height:80px;"/></td>
                                 <td>${internalReference}</td>
@@ -81,41 +82,49 @@ odoo.define('website_rdc.Sales_order', function (require) {
             })
           },
 
-           _confirm_order_data: function () {
-               let order_data = {};
+//           _confirm_order_data: function () {
+//               let order_data = {};
+////                order_data['customer_id'] = $('#customer_id').val();
+////                order_data['product_id'] = $('#product_id')[0].innerText;
+////                order_data['quantity'] = $('#quantity')[0].lastElementChild.value;
+//
 //                order_data['customer_id'] = $('#customer_id').val();
-//                order_data['product_id'] = $('#product_id')[0].innerText;
-//                order_data['quantity'] = $('#quantity')[0].lastElementChild.value;
+//                order_data['orders_line'] = [];
+//               var $element = $('.order_sale_table').find('tbody tr');
+//
+//             $element.each(function (index) {
+//                var $el = $($('.orders_col')[index]);
+//
+//                    let product_id = $el.data('prod_id');
+//                    let quantity = $(this).find('#quantity input').val();
+//
+//                    order_data['orders_line'].push({
+//                        'product_id': product_id,
+//                        'quantity': quantity
+//                    });
+//                });
+//                      return order_data;
+//
+//            },
 
+            _confirm_order_data: function () {
+                let order_data = {};
                 order_data['customer_id'] = $('#customer_id').val();
-                order_data['orders_line'] = [];
+                order_data['order_line'] = [];
 
-             $('.orders_col').each(function () {
-                 debugger
-                    let product_id = $(this).find('#product_id').val();
-                        let quantity = $(this).find('#quantity input').val();
+                 $('.order_sale_table tbody tr').each(function (index) {
+                     let product_id = $(this).attr('prod_id');
+                     let quantity = $('quantity').val();
 
-                    order_data['orders_line'].push({
+                    order_data['order_line'].push({
                         'product_id': product_id,
-                        'quantity': quantity
+                        'product_uom_qty': quantity
                     });
                 });
-                      return order_data;
 
 
-
-//                  let ordersCols = $('.orders_col');
-
-//            for (let i = 0; i < ordersCols.length; i++) {
-//                let product_id = $(ordersCols[i]).find('#product_id').text().trim();
-//                let quantity = $(ordersCols[i]).find('#quantity input').val();
-//
-//                order_data['orders_line'].push({
-//                    'product_id': product_id,
-//                    'quantity': quantity
-//                });
-//            }
-            },
+    return order_data;
+},
 
 
 
