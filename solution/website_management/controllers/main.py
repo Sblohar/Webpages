@@ -52,35 +52,92 @@ class CustomController(http.Controller):
 
         return request.redirect('/website_management/contact_info/%s' % partner_id.id)
 
-    @http.route(['/confirm_order'], type='http', auth='public', website=True, csrf=False)
-    def create_confirm_order(self, **post):
-        print("tttttttttttttttttttttttttt")
+    # @http.route(['/confirm_order'], type='http', auth='public', website=True)
+    # def create_confirm_order(self, **post):
+    #     print("tttttttttttttttttttttttttt")
+    #
+    #     customer_id = post.get('customer_id')
+    #     quantity = int(post.get('quantity', 0))
+    #     product_id = int(post.get('product_id', 0))
+    #
+    #     print(post)
+    #
+    #     sale_order = request.env['sale.order'].sudo().create({
+    #         'partner_id': int(customer_id),
+    #         'order_line': [
+    #             Command.create({
+    #                 'product_id': product_id,
+    #                 'product_uom_qty': quantity,
+    #            })
+    #
+    #         ]
+    #
+    #     })
+    #
+    #     return request.redirect('/website_management/order_new_sales/%s' % sale_order.id)
+    #
+    #     # return json.dumps({
+    #     #     'status': 200
+    #     # })
+    @http.route(['/new_confirm_order'], type='http', auth='public', methods=['POST'], website=True,  csrf=False)
+    def create_confirm_order(self, **kw):
 
-        customer_id = post.get('customer_id')
-        quantity = post.get('quantity')
-        product_id = post.get('product_id')
+        customer_id = kw.get('customer_id')
+        # # order_lines = kw.get('order_line', [])
+        #
+        # print(kw)
+        #
+        vals = {
+            'partner_id': int(customer_id),
+        }
 
-        print(post)
+        data = kw
+
+        order_lines = {}
+        for key, value in data.items():
+            if key.startswith('order_line'):
+                _, index, property_name = key.split('[')
+                index = int(index[:-1])
+                property_name = property_name[:-1]
+                if index not in order_lines:
+                    order_lines[index] = {}
+
+                order_lines[index][property_name] = value
+        for index, order_data in order_lines.items():
+            print(f"Order Line {index}: {order_data}")
+
+        print('order_data', order_data)
+
+        order_lines = []
+        product_id = int(order_data.get('product_id'))
+        product_uom_qty = int(order_data.get('product_uom_qty', 0))
+
+        # order_line = {
+        #     'product_id': product_id,
+        #     'product_uom_qty': product_uom_qty,
+        # }
+        #
+        # order_lines.append(order_line)
+
+        # vals = {
+            # 'order_line': order_line,
+        # }
+
 
         sale_order = request.env['sale.order'].sudo().create({
+            # 'partner_id': int(customer_id),
             'partner_id': int(customer_id),
             'order_line': [
                 Command.create({
                     'product_id': product_id,
-                    'product_uom_qty': quantity,
-               })
-
+                    'product_uom_qty': product_uom_qty,
+                })
             ]
-
         })
 
-        return request.redirect('/website_management/order_new_sales/%s' % sale_order.id)
-
-
-
-        # return json.dumps({
-        #     'status': 200
-        # })
+        # return request.redirect('/website_management/order_new_sales/%s' % sale_order.id)
+        return json.dumps({'sale_order': sale_order.id})
+        # return request.redirect('/'% sale_order.id)
 
 
 
