@@ -4,9 +4,9 @@
         <t t-call="website.layout">
             <div class="sale_order1">
                 <section class="title_register">
-                    <div class="container mt-5">
+                    <div class="row mt-5 customer_name m-2">
                         <p class="">Customer</p>
-                        <div id="customer">
+                        <div class="col-md-6" id="customer">
                             <select class="input_box" name="customer" id="customer_id"
                                     tabindex="13" style="width: 90% ; background-color:white;">
                                 <option value="">Select customer name...</option>
@@ -17,33 +17,34 @@
                                 </t>
                             </select>
                         </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-success">Create New Customer</button>
+                        </div>
                     </div>
                 </section>
-                <section class="orders m-4 p-4 shadow-lg p-3 mb-5 bg-white rounded">
-                        <table class="order_sale_table table table-sm o_main_table table-borderless mt-4 ">
-                            <div class="search-bar mb-4 row">
-                              <h3 class="text-primary col-lg-6">Orders</h3>
-                                <button type="object" id="confirm-btn" class="btn btn-success col-lg-6" style="width:200px; margin-left:600px;">Confirm Order</button>
-                            </div>
-                            <thead>
-                                <tr>
-                                    <th scope="col">Sr</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Internal Reference</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody class="orders_col">
+               <div class="row m-2">
+                 <section class="orders m-4 p-4 shadow-lg p-3 mb-5 bg-white rounded col-lg-3">
+                            <table class="order_sale_table table table-sm o_main_table table-borderless mt-4 ">
+                                <div class="search-bar mb-4 row">
+                                  <h3 class="text-primary col-lg-6">Orders</h3>
+                                    <button type="object" id="confirm-btn" class="btn btn-success col-lg-6" style="width:200px;">Confirm Order</button>
+                                </div>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Sr</th>
+                                        <th scope="col">Internal Reference</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="orders_col">
 
-                            </tbody>
+                                </tbody>
 
-                        </table>
-
+                            </table>
                 </section>
-                <section class="m-4 p-4 shadow-lg p-3 mb-5 bg-white rounded">
+                 <section class="m-4 p-4 shadow-lg p-3 mb-5 bg-white rounded col-lg-8">
                     <table class="table table-sm o_main_table table-borderless mt-4">
                         <div class="search-bar mb-4">
                             <label for="internalReferenceSearch" class="form-label text-primary">Search by Internal
@@ -96,6 +97,7 @@
                         </tbody>
                     </table>
                 </section>
+               </div>
             </div>
         </t>
     </template>
