@@ -33,30 +33,30 @@ odoo.define('website_rdc.Sales_order', function (require) {
         _addToCart: function (ev) {
             const $row = $(ev.currentTarget).closest('.main1');
             const internalReference = $row.find('.name').text();
-            const description = $row.find('.description').text();
             const price = $row.find('.price').text();
             const quantity = $row.find('.quantity input').val() || 0;
-            const imagebox = $row.find('.image img').attr('src');
 
-            const newRow = `<tr prod_id=${$row.attr('prod_id')}>
-                                <td></td>
-                                <td><img src="${imagebox}" alt="Image" style="height:80px;"/></td>
-                                <td>${internalReference}</td>
-                                <td>${description}</td>
-                                <td>${price}</td>
-                                <td><input type="number" style="width: 60px;" value="${quantity}"/></td>
-                                <td>
-                                    <button class="btn btn-outline-danger m-3 border border-danger remove-btn">Remove</button>
-                                </td>
-                            </tr>`;
+             if (quantity >= 1) {
+        const newRow = `<tr prod_id=${$row.attr('prod_id')}>
+                            <td></td>
+                            <td>${internalReference}</td>
+                            <td>${price}</td>
+                            <td><input type="number" style="width: 60px;" value="${quantity}"/></td>
+                            <td>
+                                <button class="btn btn-outline-danger border border-danger remove-btn">Remove</button>
+                            </td>
+                        </tr>`;
 
-            const $ordersTable = $('.orders table');
-            $ordersTable.append(newRow);
+        const $ordersTable = $('.order_sale_table');
+        $ordersTable.append(newRow);
 
-            $ordersTable.find('tr').each(function (index) {
-                $(this).find('td:first').text(index + 0);
-            });
-        },
+        $ordersTable.find('tr').each(function (index) {
+            $(this).find('td:first').text(index + 0);
+        });
+    } else {
+        alert("Quantity must be at least one to add to cart.");
+    }
+},
 
         _removeCart: function (ev) {
             const $row = $(ev.currentTarget).closest('tr');
@@ -64,35 +64,35 @@ odoo.define('website_rdc.Sales_order', function (require) {
         },
 
         _confirmOrder: function () {
-            let orders = this._confirm_order_data();
-            $.ajax("/confirm_order", {
-                data: orders,
+            const order_data = this._confirm_order_data();
+            $.ajax("/new_confirm_order", {
+                data: order_data,
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    alert("helooo")
+                    debugger;
+                    if(data){
+                        alert("Order confirmed successfully");
+                    }
                 },
                 error: function (error) {
-                    debugger;
+                       alert("Failed to confirm order. Please try again.");
                 }
             });
         },
 
         _confirm_order_data: function () {
-            debugger;
 
             let order_data = {};
             order_data['customer_id'] = $('#customer_id').val();
             order_data['order_line'] = [];
 
-            $('.orders table tbody tr').each(function (index) {
-                debugger;
+            $('.order_sale_table tbody tr').each(function (index) {
                 let product_id = $(this).attr('prod_id');
                 let quantity = $(this).find('td:nth-child(6) input').val() || 0;
-
                 order_data['order_line'].push({
                     'product_id': product_id,
-                    'product_uom_qty': quantity
+                    'product_uom_qty': quantity,
                 });
             });
 
