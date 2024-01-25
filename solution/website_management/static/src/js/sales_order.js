@@ -37,26 +37,26 @@ odoo.define('website_rdc.Sales_order', function (require) {
             const quantity = $row.find('.quantity input').val() || 0;
 
              if (quantity >= 1) {
-        const newRow = `<tr prod_id=${$row.attr('prod_id')}>
-                            <td></td>
-                            <td>${internalReference}</td>
-                            <td>${price}</td>
-                            <td><input type="number" style="width: 60px;" value="${quantity}"/></td>
-                            <td>
-                                <button class="btn btn-outline-danger border border-danger remove-btn">Remove</button>
-                            </td>
-                        </tr>`;
+                const newRow = `<tr prod_id=${$row.attr('prod_id')}>
+                                    <td></td>
+                                    <td>${internalReference}</td>
+                                    <td>${price}</td>
+                                    <td><input type="number" style="width: 60px;" value="${quantity}"/></td>
+                                    <td>
+                                        <button class="btn btn-outline-danger border border-danger remove-btn">Remove</button>
+                                    </td>
+                                </tr>`;
 
-        const $ordersTable = $('.order_sale_table');
-        $ordersTable.append(newRow);
+                const $ordersTable = $('.order_sale_table');
+                $ordersTable.append(newRow);
 
-        $ordersTable.find('tr').each(function (index) {
-            $(this).find('td:first').text(index + 0);
-        });
-    } else {
-        alert("Quantity must be at least one to add to cart.");
-    }
-},
+                $ordersTable.find('tr').each(function (index) {
+                    $(this).find('td:first').text(index + 0);
+                });
+            } else {
+                alert("Quantity must be at least one to add to cart.");
+            }
+        },
 
         _removeCart: function (ev) {
             const $row = $(ev.currentTarget).closest('tr');
