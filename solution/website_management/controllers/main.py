@@ -57,32 +57,29 @@ class CustomController(http.Controller):
         customer_id = kw.get('customer_id')
         data = kw
 
-        order_lines = {}
+        order_lines = []
         for key, value in data.items():
             if key.startswith('order_line'):
                 _, index, property_name = key.split('[')
                 index = int(index[:-1])
                 property_name = property_name[:-1]
-                if index not in order_lines:
-                    order_lines[index] = {}
-
+                if len(order_lines) <= index:
+                    order_lines.append({})
                 order_lines[index][property_name] = value
-        for index, order_data in order_lines.items():
-            print(f"Order Line {index}: {order_data}")
 
-        print('order_data', order_data)
+        sale_order_lines = []
 
-        product_id = int(order_data.get('product_id'))
-        product_uom_qty = int(order_data.get('product_uom_qty', 0))
+        for order_data in order_lines:
+            product_id = int(order_data.get('product_id'))
+            product_uom_qty = int(order_data.get('product_uom_qty', 0))
+            sale_order_lines.append((0, 0, {
+                'product_id': product_id,
+                'product_uom_qty': product_uom_qty,
+            }))
 
         sale_order = request.env['sale.order'].sudo().create({
             'partner_id': int(customer_id),
-            'order_line': [
-                Command.create({
-                    'product_id': product_id,
-                    'product_uom_qty': product_uom_qty,
-                })
-            ]
+            'order_line': sale_order_lines,
         })
 
         return json.dumps({'sale_order': sale_order.id})
