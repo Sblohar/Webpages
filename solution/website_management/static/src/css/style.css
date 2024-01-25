@@ -1,13 +1,14 @@
 
 .title_register{
   margin-top: 80px;
-
 }
 .input_box{
    border:1px solid #c8c8c8 !important;
    padding:5px;
 }
-
+.customer_name{
+  margin-left: 40px;
+}
 .valid {
   color: green;
 }
@@ -16,4 +17,9 @@
    }
 .img1{
    height:80px;
+}
+.error-message {
+    color: red;
+    margin-top: 5px;
+    font-size: 15px;
 }
