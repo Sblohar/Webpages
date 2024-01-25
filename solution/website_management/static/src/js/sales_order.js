@@ -69,25 +69,27 @@ odoo.define('website_rdc.Sales_order', function (require) {
         _confirmOrder: function () {
              const customerId = $('#customer_id').val();
                 if (!customerId) {
-                     $('#customer_id').after('<div class="error-message">Please select a customer.</div>');
+                    alert("Please select a customer.");
                     return;
                 }
 
             const order_data = this._confirm_order_data();
-            $.ajax("/new_confirm_order", {
-                data: order_data,
-                type: 'POST',
-                dataType: 'json',
-                success: function (data) {
-                    debugger;
-                    if(data){
-                        alert("Order confirmed successfully");
+                $.ajax("/new_confirm_order", {
+                    data: order_data,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        debugger;
+                        if(data){
+                            alert("Order confirmed successfully");
+                               $('#customer_id').val('');
+                               $('.order_sale_table tbody').empty();
+                        }
+                    },
+                    error: function (error) {
+                           alert("Failed to confirm order. Please try again.");
                     }
-                },
-                error: function (error) {
-                       alert("Failed to confirm order. Please try again.");
-                }
-            });
+                });
         },
 
         _confirm_order_data: function () {
