@@ -10,6 +10,7 @@ odoo.define('website_rdc.Sales_order', function (require) {
             'click .btn-danger': '_addToCart',
             'click #confirm-btn': '_confirmOrder',
             'click .remove-btn': '_removeCart',
+            'click #create_customer': '_createCustomer'
         },
 
         start: function () {
@@ -107,6 +108,10 @@ odoo.define('website_rdc.Sales_order', function (require) {
             });
 
             return order_data;
+        },
+
+        _createCustomer: function (){
+
         },
     });
 });
