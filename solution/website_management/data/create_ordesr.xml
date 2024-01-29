@@ -16,15 +16,16 @@
                                     </option>
                                 </t>
                             </select>
+                            <div id="error_message" class="error-message"></div>
                         </div>
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-success">Create New Customer</button>
+                            <button type="action" name="" class="btn btn-success" id="create_customer">Create New Customer</button>
                         </div>
                     </div>
                 </section>
                <div class="row m-2">
-                 <section class="orders m-4 p-4 shadow-lg p-3 mb-5 bg-white rounded col-lg-3">
-                            <table class="order_sale_table table table-sm o_main_table table-borderless mt-4 ">
+                   <section class="orders m-4 p-4 shadow-lg p-3 mb-5 bg-white rounded col-lg-3">
+                            <table class="order_sale_table table table-sm o_main_table table-borderless mt-4">
                                 <div class="search-bar mb-4 row">
                                   <h3 class="text-primary col-lg-6">Orders</h3>
                                     <button type="object" id="confirm-btn" class="btn btn-success col-lg-6" style="width:200px;">Confirm Order</button>
@@ -44,7 +45,7 @@
 
                             </table>
                 </section>
-                 <section class="m-4 p-4 shadow-lg p-3 mb-5 bg-white rounded col-lg-8">
+                <section class="m-4 p-4 shadow-lg p-3 mb-5 bg-white rounded col-lg-8 scrollable-section">
                     <table class="table table-sm o_main_table table-borderless mt-4">
                         <div class="search-bar mb-4">
                             <label for="internalReferenceSearch" class="form-label text-primary">Search by Internal
