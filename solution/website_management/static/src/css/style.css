@@ -37,10 +37,6 @@
     outline: none;
 }
 
-.input_box1::placeholder {
-    color: #999;
-}
-
 .scrollable-section {
     overflow-y: auto;
     max-height: calc(100vh - 120px);
