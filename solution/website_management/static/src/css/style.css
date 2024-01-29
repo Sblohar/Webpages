@@ -23,3 +23,28 @@
     margin-top: 5px;
     font-size: 15px;
 }
+.input_label {
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.input_box1 {
+    width: 50%;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    outline: none;
+}
+
+.input_box1::placeholder {
+    color: #999;
+}
+
+.scrollable-section {
+    overflow-y: auto;
+    max-height: calc(100vh - 120px);
+}
+.error-border {
+    border-color: #fc032c !important;
+}
