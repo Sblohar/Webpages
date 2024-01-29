@@ -32,47 +32,48 @@ odoo.define('website_rdc.Sales_order', function (require) {
             });
         },
 
-        _addToCart: function(ev) {
+     _addToCart: function(ev) {
             const $row = $(ev.currentTarget).closest('.main1');
             const internalReference = $row.find('.name').text();
             const price = $row.find('.price').text();
             const quantityInput = $row.find('.quantity input');
             const quantity = parseInt(quantityInput.val()) || 0;
             const $ordersTable = $('.order_sale_table');
-
+        
+            quantityInput.removeClass('error-border');
+        
             const $alreadyStore = $ordersTable.find(`tr[prod_id="${$row.attr('prod_id')}"]`);
-
+        
             if ($alreadyStore.length > 0) {
                 const CurrentQ = parseInt($alreadyStore.find('td input').val()) || 0;
                 const NewQ = CurrentQ + quantity;
                 $alreadyStore.find('td input').val(NewQ);
             } else {
-            if (quantity > 0) {
-                const newRow = `<tr prod_id=${$row.attr('prod_id')}>
-                                    <td></td>
-                                    <td>${internalReference}</td>
-                                    <td>${price}</td>
-                                    <td><input type="number" style="width: 60px;" value="${quantity}" required/></td>
-                                    <td>
-                                        <button class="btn btn-outline-danger border border-danger remove-btn">Remove</button>
-                                    </td>
-                                </tr>`;
-
-                $ordersTable.append(newRow);
-
-                $ordersTable.find('tr').each(function(index) {
-                    $(this).find('td:first').text(index + 0);
-                });
+                if (quantity > 0) {
+                    const newRow = `<tr prod_id=${$row.attr('prod_id')}>
+                                        <td></td>
+                                        <td>${internalReference}</td>
+                                        <td>${price}</td>
+                                        <td><input type="number" style="width: 60px;" value="${quantity}" required/></td>
+                                        <td>
+                                            <button class="btn btn-outline-danger border border-danger remove-btn">Remove</button>
+                                        </td>
+                                    </tr>`;
+        
+                    $ordersTable.append(newRow);
+        
+                    $ordersTable.find('tr').each(function(index) {
+                        $(this).find('td:first').text(index + 0);
+                    });
+                } else {
+                    quantityInput.addClass('error-border');
+                }
+        
+                if (this.$('.order_sale_table tbody tr').length > 0) {
+                    this.$('#confirm-btn').prop('disabled', false);
+                }
             }
-
-            if (this.$('.order_sale_table tbody tr').length > 0) {
-                this.$('#confirm-btn').prop('disabled', false);
-            }
-          }
-           quantityInput.focus();
-           quantityInput.addClass('error-border');
-           quantityInput.val('');
-
+               quantityInput.val('');
         },
 
         _removeCart: function (ev) {
@@ -131,85 +132,7 @@ odoo.define('website_rdc.Sales_order', function (require) {
             return order_data;
         },
 
-//         _createCustomer: function () {
-//            var self = this;
-//        debugger
-//            var $firstNameInput = $('#first_name');
-//            var $lastNameInput = $('#last_name');
-//
-//            this.dialog = new Dialog(this, {
-//
-//                title: 'Create New Customer',
-//                buttons: [{
-//                    text: 'Create',
-//                    classes: 'btn-primary',
-//                    close: true,
-//                    click: function () {
-//                      debugger
-//                        var firstName = $firstNameInput.val();
-//                        var lastName = $lastNameInput.val();
-//                        self._saveCustomer(firstName, lastName);
-//                    }
-//                },
-//                {
-//                    text: 'Cancel',
-//                    close: true
-//                }],
-//            });
-//
-//            this.dialog.open();
-//        },
-//
-//          _saveCustomer: function (firstName, lastName) {
-//            var self = this;
-//             $.ajax({
-//                type: 'POST',
-//                url: '/create_record',
-//                data: {
-//                    first_name: firstName,
-//                    last_name: lastName,
-//                },
-//                success: function (response) {
-//                    console.log('Record created successfully:', response);
-//                },
-//                error: function (error) {
-//                    console.error('Error creating record:', error);
-//                }
-//            });
-//          },
 
-//        _createCustomer: function () {
-//            var self = this;
-//            var $content = $('<div>').append(
-//                 $('<label>', { class: 'input_label', text: 'First Name: ' }),
-//                 $('<input>', { class: 'input_box1', id: 'first_name', type: 'text', name: 'first_name', placeholder: 'First Name' }),
-//                 $('<br>'),
-//                 $('<label>', { class: 'input_label mt-4', text: 'Last Name: ' }),
-//                 $('<input>', { class: 'input_box1', id: 'last_name', type: 'text', name: 'last_name', placeholder: 'Last Name' })
-//            );
-//
-//            this.dialog = new Dialog(this, {
-//                title: 'Create New Customer',
-//                buttons: [{
-//                    text: 'Create',
-//                    classes: 'btn-primary',
-//                    close: true,
-//                    click: function () {
-//                        var firstName = $('#first_name').val();
-//                        var lastName = $('#last_name').val();
-//
-//                         self._saveCustomer(firstName, lastName);
-//                    }
-//                },
-//                 {
-//                    text: 'Cancel',
-//                    close: true
-//                }],
-//                $content: $content,
-//            });
-//
-//            this.dialog.open();
-//        },
 
 
     });
