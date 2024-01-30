@@ -122,7 +122,7 @@ odoo.define('website_rdc.Sales_order', function (require) {
 
             $('.order_sale_table tbody tr').each(function (index) {
                 let product_id = $(this).attr('prod_id');
-                let quantity = $(this).find('td:nth-child(6) input').val() || 0;
+                let quantity = $(this).find('td:nth-child(4) input').val() || 0;
                 order_data['order_line'].push({
                     'product_id': product_id,
                     'product_uom_qty': quantity,
