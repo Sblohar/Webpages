@@ -154,7 +154,7 @@ odoo.define('website_rdc.Sales_order', function (require) {
                         var firstName = $('#first_name').val();
                         var lastName = $('#last_name').val();
 
-                         self._saveCustomer(firstName, lastName);
+                         self._newCustomer(firstName, lastName);
                     }
                 },
                  {
@@ -167,26 +167,35 @@ odoo.define('website_rdc.Sales_order', function (require) {
             this.dialog.open();
         },
 
+        _newCustomer: function (firstName, lastName) {
 
-        _saveCustomer: function (firstName, lastName) {
-         var self = this;
-             $.ajax({
+            var newCustomerId = this._newCustomerBackend(firstName, lastName);
+
+            $('#customer_id').append($('<option>', {
+                value: newCustomerId,
+                text: firstName + ' ' + lastName
+            }));
+
+            $('#customer_id').val(newCustomerId);
+        },
+
+//        _newCustomerBackend: function (firstName, lastName) {
+//           return 'newCustomerId';
+//        },
+
+        _newCustomerBackend: function (firstName, lastName) {
+            var self = this;
+            return $.ajax({
                 type: 'POST',
                 url: '/create_record',
                 data: {
                     first_name: firstName,
                     last_name: lastName,
                 },
-                success: function (response) {
-
-
-                },
-                error: function (error) {
-
-                }
+            }).then(function (data) {
+                return data.newCustomerId;
             });
-          },
-
+        },
 
 
     });
