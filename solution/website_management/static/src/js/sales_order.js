@@ -84,7 +84,7 @@ odoo.define('website_rdc.Sales_order', function (require) {
 
         _confirmOrder: function () {
 
-              $('#customer_id').change(function() {
+            $('#customer_id').change(function() {
                 $('#error_message').hide();
             });
              const customerId = $('#customer_id').val();
@@ -168,33 +168,31 @@ odoo.define('website_rdc.Sales_order', function (require) {
         },
 
         _newCustomer: function (firstName, lastName) {
-
-            var newCustomerId = this._newCustomerBackend(firstName, lastName);
+            var newCustomerId = firstName.toLowerCase() + '_' + lastName.toLowerCase();
 
             $('#customer_id').append($('<option>', {
                 value: newCustomerId,
                 text: firstName + ' ' + lastName
             }));
-
             $('#customer_id').val(newCustomerId);
-        },
 
-//        _newCustomerBackend: function (firstName, lastName) {
-//           return 'newCustomerId';
-//        },
+                $.ajax({
+                    type: 'POST',
+                    url: '/create_record',
+                    data: {
+                        first_name: firstName,
+                        last_name: lastName,
+                    },
+                    success:function(response){
 
-        _newCustomerBackend: function (firstName, lastName) {
-            var self = this;
-            return $.ajax({
-                type: 'POST',
-                url: '/create_record',
-                data: {
-                    first_name: firstName,
-                    last_name: lastName,
-                },
-            }).then(function (data) {
-                return data.newCustomerId;
-            });
+                    },
+                    error: function(error){
+
+                    }
+                });
+
+            return newCustomerId;
+
         },
 
 
