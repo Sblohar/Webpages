@@ -1,0 +1,19 @@
+
+.head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 3rem;
+    font-weight: bolder;
+}
+.add{
+    width: 500px;
+}
+.item_value{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+}
+.bg{
+   background-color: white;
+}
