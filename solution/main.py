@@ -240,22 +240,22 @@ class FlybarAutomation:
         }
 
         order_list = [
-            {'order_name': '1244', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '6/02/2024',
+            {'order_name': '1244', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '6 FEB 2024',
              'picking': 30751,
              'main_operation_type': 'all', 'line_json_data': line_dict_4},
-            {'order_name': '1245', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '5/02/2024',
+            {'order_name': '1245', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '5 FEB 2024',
              'picking': 30751,
              'main_operation_type': 'is_separate_box', 'line_json_data': line_dict_4},
-            {'order_name': '1246', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '6/02/2024',
+            {'order_name': '1246', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '6 FEB 2024',
              'picking': 30751,
              'main_operation_type': 'individual_separate_multi_box', 'line_json_data': line_dict_1},
-            {'order_name': '1247', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '7/02/2024',
+            {'order_name': '1247', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '7 FEB 2024',
              'picking': 30751,
              'main_operation_type': 'individual_item_same_box', 'line_json_data': line_dict_2},
-            {'order_name': '1248', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '5/02/2024',
+            {'order_name': '1248', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '5 FEB 2024',
              'picking': 30751,
              'main_operation_type': 'split_multi_box', 'line_json_data': line_dict_3},
-            {'order_name': '1249', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '7/02/2024',
+            {'order_name': '1249', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '7 FEB 2024',
              'picking': 30751,
              'main_operation_type': 'mixed', 'line_json_data': line_dict_4}
         ]
