@@ -8,6 +8,7 @@ import os
 from config import JWT_SECRET_KEY, DATABASE
 import logging
 import json
+import sqlite3
 
 _logger = logging.getLogger(__name__)
 
@@ -31,237 +32,20 @@ class FlybarAutomation:
         self.app.route('/flybar/display/logs')(self.display_logs)
 
     def display_logs(self):
-        line_dict_1 = {
-            'individual_separate_multi_box': [
-                {
-                    'package_name': 'PKG1',
-                    'box_type': 'BT1',
-                    'product_lines': [
-                        {'product_name': 'AP21450BL', 'quantity': 10},
-                    ]
 
-                },
-                {
-                    'package_name': 'PKG2',
-                    'box_type': 'BT2',
-                    'product_lines': [
-                        {'product_name': 'AP21450BL', 'quantity': 10},
-                    ]
+        db = sqlite3.connect('flybar.db')
+        
+        cursor = db.execute(
+            'SELECT * FROM packaging_order',
+            )
+        all_rows = cursor.fetchall()
 
-                },
-                {
-                    'package_name': 'PKG3',
-                    'box_type': 'BT2',
-                    'product_lines': [
-                        {'product_name': '123123', 'quantity': 15},
-                    ]
+        columns = [column[0] for column in cursor.description]
+        rows_as_dicts = [dict(zip(columns, row)) for row in all_rows]
+        
+        print(rows_as_dicts[0])
 
-                },
-                {
-                    'package_name': 'PKG4',
-                    'box_type': 'BT2',
-                    'product_lines': [
-                        {'product_name': 'AP61310MC', 'quantity': 6},
-                    ]
-
-                },
-                {
-                    'package_name': 'PKG5',
-                    'box_type': 'BT2',
-                    'product_lines': [
-                        {'product_name': 'AP61310MC', 'quantity': 6},
-                    ]
-
-                },
-                {
-                    'package_name': 'PKG6',
-                    'box_type': 'BT2',
-                    'product_lines': [
-                        {'product_name': 'AP61310MC', 'quantity': 6},
-                    ]
-
-                },
-                {
-                    'package_name': 'PKG7',
-                    'box_type': 'BT2',
-                    'product_lines': [
-                        {'product_name': 'FP21514RT', 'quantity': 14},
-                    ]
-
-                },
-                {
-                    'package_name': 'PKG8',
-                    'box_type': 'BT2',
-                    'product_lines': [
-                        {'product_name': 'FP21514RT', 'quantity': 14},
-                    ]
-
-                },
-
-            ]
-        }
-
-        line_dict_2 = {
-            'individual_item_same_box': [
-                {
-                    'package_name': 'PKG1',
-                    'box_type': 'BT1',
-                    'product_lines': [
-                        {'product_name': 'AP21450BL', 'quantity': 10},
-                        {'product_name': 'FP21514RT', 'quantity': 14},
-                        {'product_name': 'AP61310MC', 'quantity': 6},
-                    ],
-                    'weight': 5,
-                    'lenght': 5,
-                    'width': 5,
-                    'height': 5,
-
-                },
-                {
-                    'package_name': 'PKG2',
-                    'box_type': 'BT2',
-                    'product_lines': [
-                        {'product_name': 'AP21450BL', 'quantity': 10},
-                        {'product_name': 'FP21514RT', 'quantity': 14},
-                    ]
-                },
-                {
-                    'package_name': 'PKG3',
-                    'box_type': 'BT2',
-                    'product_lines': [
-                        {'product_name': '123123', 'quantity': 15},
-                        {'product_name': 'AP61310MC', 'quantity': 12},
-                    ]
-                },
-            ],
-        }
-
-        line_dict_3 = {
-            'split_multi_box': [
-                {'product_name': 'AP21450BL', 'quantity': 10, 'box_type': 'BT1', 'package_name': 'PKG1', 'weight': 5,
-                 'length': 5,
-                 'width': 5,
-                 'height': 5, },
-                {'product_name': 'AP21450BL', 'quantity': 10, 'box_type': 'BT1', 'package_name': 'PKG2', 'weight': 5,
-                 'length': 5,
-                 'width': 5,
-                 'height': 5, },
-                {'product_name': '123123', 'quantity': 5, 'box_type': 'BT2', 'package_name': 'PKG3', 'weight': 5,
-                 'length': 5,
-                 'width': 5,
-                 'height': 5, },
-                {'product_name': '123123', 'quantity': 5, 'box_type': 'BT2', 'package_name': 'PKG4', 'weight': 5,
-                 'length': 5,
-                 'width': 5,
-                 'height': 5, },
-                {'product_name': '123123', 'quantity': 5, 'box_type': 'BT2', 'package_name': 'PKG4', 'weight': 5,
-                 'length': 5,
-                 'width': 5,
-                 'height': 5, },
-                {'product_name': 'AP61310MC', 'quantity': 9, 'box_type': 'BT2', 'package_name': 'PKG4', 'weight': 5,
-                 'length': 5,
-                 'width': 5,
-                 'height': 5, },
-                {'product_name': 'AP61310MC', 'quantity': 9, 'box_type': 'BT2', 'package_name': 'PKG4', 'weight': 5,
-                 'length': 5,
-                 'width': 5,
-                 'height': 5, },
-                {'product_name': 'FP21514RT', 'quantity': 14, 'box_type': 'BT2', 'package_name': 'PKG4', 'weight': 5,
-                 'length': 5,
-                 'width': 5,
-                 'height': 5, },
-                {'product_name': 'FP21514RT', 'quantity': 14, 'box_type': 'BT2', 'package_name': 'PKG4', 'weight': 5,
-                 'length': 5,
-                 'width': 5,
-                 'height': 5, },
-            ]
-        }
-
-        line_dict_4 = {
-            'individual_separate_multi_box': [
-                {
-                    'package_name': 'PKG2',
-                    'box_type': 'BT2',
-                    'product_lines': [
-                        {'product_name': 'AP21450BL', 'quantity': 10},
-                    ]
-
-                },
-                {
-                    'package_name': 'PKG3',
-                    'box_type': 'BT2',
-                    'product_lines': [
-                        {'product_name': '123123', 'quantity': 15},
-                    ]
-
-                },
-                {
-                    'package_name': 'PKG6',
-                    'box_type': 'BT2',
-                    'product_lines': [
-                        {'product_name': 'AP61310MC', 'quantity': 6},
-                    ]
-
-                },
-            ],
-            'individual_item_same_box': [
-                {
-                    'package_name': 'PKG1',
-                    'box_type': 'BT1',
-                    'product_lines': [
-                        {'product_name': 'AP21450BL', 'quantity': 4},
-                        {'product_name': 'FP21514RT', 'quantity': 14},
-                        {'product_name': 'AP61310MC', 'quantity': 6},
-                    ],
-                    'weight': 5,
-                    'lenght': 5,
-                    'width': 5,
-                    'height': 5,
-                },
-                {
-                    'package_name': 'PKG2',
-                    'box_type': 'BT2',
-                    'product_lines': [
-                        {'product_name': 'AP61310MC', 'quantity': 6},
-                        {'product_name': 'FP21514RT', 'quantity': 4},
-                    ]
-                },
-            ],
-            'split_multi_box': [
-                {'product_name': 'AP21450BL', 'quantity': 3, 'box_type': 'BT1', 'package_name': 'PKG1', 'weight': 5,
-                 'length': 5, 'width': 5, 'height': 5, },
-                {'product_name': 'AP21450BL', 'quantity': 3, 'box_type': 'BT1', 'package_name': 'PKG2', 'weight': 5,
-                 'length': 5, 'width': 5, 'height': 5, },
-                {'product_name': 'FP21514RT', 'quantity': 5, 'box_type': 'BT2', 'package_name': 'PKG4', 'weight': 5,
-                 'length': 5, 'width': 5, 'height': 5, },
-                {'product_name': 'FP21514RT', 'quantity': 5, 'box_type': 'BT2', 'package_name': 'PKG4', 'weight': 5,
-                 'length': 5, 'width': 5, 'height': 5, },
-            ]
-        }
-
-        order_list = [
-            {'order_name': '1244', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '6 FEB 2024',
-             'picking': 30751,
-             'main_operation_type': 'all', 'line_json_data': line_dict_4},
-            {'order_name': '1245', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '5 FEB 2024',
-             'picking': 30751,
-             'main_operation_type': 'is_separate_box', 'line_json_data': line_dict_4},
-            {'order_name': '1246', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '6 FEB 2024',
-             'picking': 30751,
-             'main_operation_type': 'individual_separate_multi_box', 'line_json_data': line_dict_1},
-            {'order_name': '1247', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '7 FEB 2024',
-             'picking': 30751,
-             'main_operation_type': 'individual_item_same_box', 'line_json_data': line_dict_2},
-            {'order_name': '1248', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '5 FEB 2024',
-             'picking': 30751,
-             'main_operation_type': 'split_multi_box', 'line_json_data': line_dict_3},
-            {'order_name': '1249', 'weight': 0.0, 'length': 0.0, 'width': 0.0, 'height': 0.0, 'date': '7 FEB 2024',
-             'picking': 30751,
-             'main_operation_type': 'mixed', 'line_json_data': line_dict_4}
-        ]
-
-        return render_template('index.html', data=order_list )
-        # return jsonify(order_list=order_list)
+        return render_template('index.html', data=rows_as_dicts )
 
 
     def run(self):
