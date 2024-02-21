@@ -43,7 +43,6 @@ class FlybarAutomation:
         columns = [column[0] for column in cursor.description]
         rows_as_dicts = [dict(zip(columns, row)) for row in all_rows]
         
-        print(rows_as_dicts[0])
 
         return render_template('index.html', data=rows_as_dicts )
 
